@@ -1,0 +1,30 @@
+.TH man 1 "15 April 2020" "v. 1.0" "Shell man page hsh"
+.SH NAME
+.B man hsh
+- A basic UNIX command line interpreter.
+.SH SYNOPSIS
+All files in this repository are designed to be compiled with the GNU Compiler Collection v. "gcc 4.8.4" in the linux environment of "Ubuntu 14.04.5 LTS".  When compiled, the executable file replicates a shell, which is a user interface used to access the services.  This shell has a set of customizable built-in commands and also integrates with other commands located in the system's PATH.  The output and functionality is designed to replicate the output of the "sh" shell and some commands. 
+
+.SH DESCRIPTION
+The shell is a program that reads line by line from a file or the terminal line. It then interprets the lines and executes it if the line is a valid command. 
+
+.SH USAGE
+All the files are to be compiled on an Ubuntu 14.04 LTS machine with "gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+
+Once compiled, to start the program, run:
+.br
+$ ./hsh
+
+To exit the program, run:
+.br
+$ exit
+.SH SEE ALSO
+List of allowed functions and system calls: `access`, `chdir`, `close`, `closedir`, `execve`, `exit`, `fork`, `free`, `fstat`, `getcwd`, `getline`, `kill`, `lstat`, `malloc`, `open`, `opendir`, `perror`, `read`, `readdir`, `signal`, `stat`, `strtok`, `wait`, `waitpid`, `wait3`, `wait4`, `write`, `_exit`.
+
+.SH RETURN VALUE
+The shell will exit with status 0 unless status is specified.
+
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Andrés Callejas, Marlon García
