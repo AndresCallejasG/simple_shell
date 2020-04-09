@@ -12,15 +12,20 @@ int main(int ac, char *av[])
 {
     char *line;
     size_t len = 0;
-    int status = 1;
+    int status = 1, interactive = 0;
     /* int j = 0; */
     char **args;
     
     line = malloc(sizeof(char));
+
+    /* revisa si hay una entrada conectada con el stdin */
+    if (isatty(STDIN_FILENO) != 0)
+            interactive = 1;
     do
     {
         /* Imprime $ y espera el primer comando */
-        printf("$ ");
+        if(interactive)
+            printf("$ ");
 
         /* lee del stdin, controla ctrl + D */
         if (getline(&line, &len, stdin) == -1) {
@@ -45,7 +50,7 @@ int main(int ac, char *av[])
         /*procesa el array de str y ejecuta dependiendo del tipo */
         status = _processing(args);      
 
-    }while (status);
+    }while (status && interactive);
     free(line);
     free(args);
 
