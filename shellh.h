@@ -15,6 +15,12 @@ typedef struct list_PATH
 	struct list_PATH *next;
 } list_t;
 
+typedef struct built_in
+{
+	char *cmd;
+	int (*f)(char **av);
+
+} built_in_t;
 
 /* Function that tokenize input line to an **array */
 char **_split(char *line);
@@ -41,5 +47,9 @@ size_t print_list(const list_t *h);
 char *_full_path(const list_t *h, char *cmd);
 char *_find_path(char *cmd);
 int _check_path(char *str);
+
+/* built-ins */
+int own_exit(char **av);
+int _print_env(char **av);
 
 #endif

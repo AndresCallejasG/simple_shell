@@ -68,3 +68,15 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/**
+ * _puts - Prints a string.
+ *
+ * @str: *char to print.
+ *
+ * Return: void.
+ */
+int _puts(char *str)
+{
+	return (write(1, str, _strlen(str)));
+}
