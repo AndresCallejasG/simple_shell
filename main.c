@@ -8,7 +8,7 @@
  *
  * Return: Always 0.
  */
-int main(int ac, char *av[])
+int main(void)
 {
     char *line;
     size_t len = 0;
@@ -17,6 +17,8 @@ int main(int ac, char *av[])
     char **args;
     
     line = malloc(sizeof(char));
+
+    signal(SIGINT, handle_ctrl_c);
 
     /* revisa si hay una entrada conectada con el stdin */
     if (isatty(STDIN_FILENO) != 0)
@@ -55,4 +57,16 @@ int main(int ac, char *av[])
     free(args);
 
     return (0);
+}
+
+/**
+ * sign_handler - handles the abscensce of a sign
+ * @sig: integer
+ */
+void handle_ctrl_c(int sign)
+{
+	sign = sign * 1;
+	_putchar('\n');
+	_putchar('$');
+    _putchar(' ');
 }
