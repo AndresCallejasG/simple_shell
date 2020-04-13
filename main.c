@@ -18,7 +18,9 @@ int main(void)
     
     line = malloc(sizeof(char));
 
-        /* revisa si hay una entrada conectada con el stdin */
+    signal(SIGINT, handle_ctrl_c);
+
+    /* revisa si hay una entrada conectada con el stdin */
     if (isatty(STDIN_FILENO) != 0)
             interactive = 1;
     do
@@ -57,3 +59,14 @@ int main(void)
     return (0);
 }
 
+/**
+ * sign_handler - handles the abscensce of a sign
+ * @sig: integer
+ */
+void handle_ctrl_c(int sign)
+{
+	sign = sign * 1;
+	_putchar('\n');
+	_putchar('$');
+    _putchar(' ');
+}
