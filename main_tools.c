@@ -70,6 +70,23 @@ char **_split(char *line)
  */
 int _processing(char **args){
 
-    _execve(args);
+    int i = 0;
+
+    built_in_t b_in[] = {
+		{"exit", own_exit},
+		{"env", _print_env},
+		{NULL, NULL}
+	};
+    
+    while (b_in[i].cmd)
+	{
+		if (strcmp(args[0], b_in[i].cmd) == 0)
+		{
+			return (b_in[i].f(args));
+		}
+		i++;
+	}
+    
+    _execve(args);   
     return (1);
 }
