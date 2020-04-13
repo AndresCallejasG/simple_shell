@@ -8,7 +8,7 @@
  *
  * Return: Always 0.
  */
-int main(int ac, char *av[])
+int main(void)
 {
     char *line;
     size_t len = 0;
@@ -18,7 +18,7 @@ int main(int ac, char *av[])
     
     line = malloc(sizeof(char));
 
-    /* revisa si hay una entrada conectada con el stdin */
+        /* revisa si hay una entrada conectada con el stdin */
     if (isatty(STDIN_FILENO) != 0)
             interactive = 1;
     do
@@ -56,3 +56,4 @@ int main(int ac, char *av[])
 
     return (0);
 }
+

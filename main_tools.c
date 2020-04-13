@@ -26,7 +26,7 @@ char **_split(char *line)
             i++;
             tok = strtok(NULL, " ");
         }
-        array = malloc(sizeof(char *) * i);
+        array = malloc(sizeof(char *) * (i + 1));
         tok = strtok(str2, " ");
         i = 0;
 
@@ -39,6 +39,7 @@ char **_split(char *line)
             i++;
             tok = strtok(NULL, " ");
         }
+        array[i] = NULL;
         
         /* instead of return - print */
         /* for(j = 0; j < i; j++)
