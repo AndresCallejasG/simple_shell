@@ -22,6 +22,10 @@ typedef struct built_in
 
 } built_in_t;
 
+/* non interactive main */
+
+void non_interactive(void);
+
 /* Function that tokenize input line to an **array */
 char **_split(char *line);
 

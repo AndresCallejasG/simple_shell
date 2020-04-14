@@ -12,51 +12,99 @@ int main(void)
 {
     char *line;
     size_t len = 0;
-    int status = 1, interactive = 0;
+    int status = 1;
     /* int j = 0; */
     char **args;
-    
-    line = malloc(sizeof(char));
 
     signal(SIGINT, handle_ctrl_c);
 
     /* revisa si hay una entrada conectada con el stdin */
     if (isatty(STDIN_FILENO) != 0)
-            interactive = 1;
-    do
     {
-        /* Imprime $ y espera el primer comando */
-        if(interactive)
+
+        do
+        {
+            line = malloc(sizeof(char));
+            /* Imprime $ y espera el primer comando */
             printf("$ ");
 
-        /* lee del stdin, controla ctrl + D */
-        if (getline(&line, &len, stdin) == -1) {
-            printf("\n");
-            continue;
-        }
+            /* lee del stdin, controla ctrl + D */
+            if (getline(&line, &len, stdin) == -1)
+            {
+                free(line);
+                _putchar('\n');
+                break;
+            }
 
-        /*controla lineas vacias*/
-        if(strcmp(line, "\n") == 0){
-            continue;    
-        }
+            /*controla lineas vacias*/
+            if (strcmp(line, "\n") == 0)
+            {
+                free(line);
+                continue;
+            }
 
-        /* parte la linea y la almacena en un char **str */
-        args = _split(line);  
+            /* parte la linea y la almacena en un char **str */
+            args = _split(line);
+            free(line);
 
-        /* for(j = 0; args[j] != NULL; j++)
+            /* for(j = 0; args[j] != NULL; j++)
         {
             printf("posicion %d ----> %s\n",j , args[j]);
             
         } */
 
-        /*procesa el array de str y ejecuta dependiendo del tipo */
-        status = _processing(args);      
+            /*procesa el array de str y ejecuta dependiendo del tipo */
+            status = _processing(args);
+            free(args);
 
-    }while (status && interactive);
-    free(line);
-    free(args);
+        }while (status);    
 
+    }
+    else
+    {
+        non_interactive();
+    }
     return (0);
+}
+
+void non_interactive(void)
+{
+    char *line;
+    size_t len = 0;
+    int status = 0, line_status = 0;
+    char **args;
+
+    
+    while(1)
+    {
+        line = malloc(sizeof(char));
+        line_status = getline(&line, &len, stdin);
+        if (line_status == -1)
+            {
+                free(line);
+                break;
+            }
+
+            /*controla lineas vacias*/
+            if (strcmp(line, "\n") == 0)
+            {
+                free(line);
+                continue;
+            }
+
+            /* parte la linea y la almacena en un char **str */
+            args = _split(line);
+
+            free(line);
+            
+            /*procesa el array de str y ejecuta dependiendo del tipo */
+            status = _processing(args);
+            free(args);
+
+    }
+
+    
+    exit(status);
 }
 
 /**
@@ -65,8 +113,8 @@ int main(void)
  */
 void handle_ctrl_c(int sign)
 {
-	sign = sign * 1;
-	_putchar('\n');
-	_putchar('$');
+    sign = sign * 1;
+    _putchar('\n');
+    _putchar('$');
     _putchar(' ');
 }

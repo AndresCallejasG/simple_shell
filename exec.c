@@ -20,7 +20,7 @@ int _execve(char **av)
         /*still not found case*/
         if (cmd_path == NULL)
         {
-            perror("Error: cmd not found");
+            perror("Error:");
             free(cmd_path);
             return(-1);
         }
@@ -105,14 +105,12 @@ char *_full_path(const list_t *h, char *cmd)
 
 			if (_check_path(concat))
             {
-                printf("found\n");
 				return (concat);
             }
 			else
 				free(concat);
 			current = current->next;
 		}
-        printf("not found\n");
 	}
 	return (NULL);
 }
