@@ -39,8 +39,7 @@ int own_exit(char **av)
 		free(av);
 		exit(EXIT_SUCCESS);
 	}
-
-	return (-1);
+	return (0);
 
 }
 

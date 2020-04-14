@@ -12,13 +12,15 @@ int main(void)
 	size_t len = 0;
 	int status = 1;
 
+
 	signal(SIGINT, handle_ctrl_c);
 
 	/* revisa si hay una entrada conectada con el stdin */
 	if (isatty(STDIN_FILENO) != 0)
 	{
 		do {
-			line = malloc(sizeof(char));
+			line = 0;
+
 			/* Imprime $ y espera el primer comando */
 			_puts("$ ");
 

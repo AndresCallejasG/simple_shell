@@ -8,36 +8,34 @@
  */
 char **_split(char *line)
 {
-	char *str, *str2, *str3;
+	char *str, *str2;
 	char **array, *tok;
 	int i = 0; /* , j = 0 */
 
 	if (line)
 	{
 		/* duplicate str to avoid strtok damage and delete /n */
-		str = _strdup(strtok(line, "\n"));
+		str = _strdup(line);
 		str2 = _strdup(str);
 
-		tok = strtok(str, " ");
+		tok = strtok(str, " \t\r\n\a" );
 
 		/* count number of tokens */
 		while (tok != NULL)
 		{
 			i++;
-			tok = strtok(NULL, " ");
+			tok = strtok(NULL, " \t\r\n\a" );
 		}
 		array = malloc(sizeof(char *) * (i + 1));
-		tok = strtok(str2, " ");
+		tok = strtok(str2, " \t\r\n\a" );
 		i = 0;
 
 		/* fill array with each token */
 		while (tok != NULL)
 		{
-			str3 = _strdup(tok);
-			array[i] = malloc(sizeof(char) * _strlen(str3));
-			array[i] = str3;
+			array[i] = _strdup(tok);
 			i++;
-			tok = strtok(NULL, " ");
+			tok = strtok(NULL, " \t\r\n\a" );
 		}
 		array[i] = NULL;
 
