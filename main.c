@@ -37,7 +37,7 @@ int main(void)
             }
 
             /*controla lineas vacias*/
-            if (strcmp(line, "\n") == 0)
+            if (_strcmp(line, "\n") == 0)
             {
                 free(line);
                 continue;
@@ -86,7 +86,7 @@ void non_interactive(void)
             }
 
             /*controla lineas vacias*/
-            if (strcmp(line, "\n") == 0)
+            if (_strcmp(line, "\n") == 0)
             {
                 free(line);
                 continue;
@@ -103,7 +103,6 @@ void non_interactive(void)
 
     }
 
-    
     exit(status);
 }
 

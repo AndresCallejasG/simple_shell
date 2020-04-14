@@ -6,7 +6,7 @@
  * @str: string
  * Return: list with new node
  */
-list_t *add_node_end(list_t **head, const char *str)
+list_t *add_node_end(list_t **head, char *str)
 {
 	list_t *new_node;
 	char *s;
@@ -15,7 +15,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	new_node = malloc(sizeof(list_t));
 	if (new_node == NULL)
 		return (NULL);
-	s = strdup(str);
+	s = _strdup(str);
 	if (s == NULL)
 	{
 		free(new_node);
@@ -66,21 +66,21 @@ list_t *_linkPATH(list_t **head)
     while (environ[i])
     {
         /* evita dañar el environ */
-        tmpenv = strdup(environ[i]);
+        tmpenv = _strdup(environ[i]);
         
 
         /* strtok sobre la copia */ 
         tok = strtok(tmpenv, "=");    
 
-        if (strcmp(name, tok) == 0)
+        if (_strcmp(name, tok) == 0)
         {            
             tok = strtok(NULL, "=");
             /* avoid valgrind error */
-            s = strdup(tok);
+            s = _strdup(tok);
             tok = strtok(s, ":");
             while(tok)
             {
-				s2 = strdup(tok);
+				s2 = _strdup(tok);
                 add_node_end(head, s2);
 				free(s2);
                 tok = strtok(NULL, ":");

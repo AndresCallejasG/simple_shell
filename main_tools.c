@@ -15,8 +15,8 @@ char **_split(char *line)
     if (line)
     {
         /* duplicate str to avoid strtok damage and delete /n */
-        str = strdup(strtok(line, "\n"));
-        str2 = strdup(str);
+        str = _strdup(strtok(line, "\n"));
+        str2 = _strdup(str);
 
         tok = strtok(str, " ");
 
@@ -33,30 +33,19 @@ char **_split(char *line)
         /* fill array with each token */
         while (tok != NULL)
         {
-            str3 = strdup(tok);
-            array[i] = malloc(sizeof(char) * strlen(str3));
+            str3 = _strdup(tok);
+            array[i] = malloc(sizeof(char) * _strlen(str3));
             array[i] = str3;
             i++;
             tok = strtok(NULL, " ");
         }
         array[i] = NULL;
         
-        /* instead of return - print */
-        /* for(j = 0; j < i; j++)
-        {
-            printf("%s\n", array[j]);
-        }
- */
         /* free memory */
         free(str);
         free(str2);
         return (array);
 
-        /* instead of return - print */
-        /* for(j = 0; j < i; j++)
-        {
-            printf("%s\n", array[j]);
-        } */
     }
 
     return (NULL);
@@ -80,7 +69,7 @@ int _processing(char **args){
     
     while (b_in[i].cmd)
 	{
-		if (strcmp(args[0], b_in[i].cmd) == 0)
+		if (_strcmp(args[0], b_in[i].cmd) == 0)
 		{
 			return (b_in[i].f(args));
 		}

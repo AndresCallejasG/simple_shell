@@ -42,7 +42,7 @@ int _putchar(char c);
 int _puts(char *str);
 
 /* list tools */
-list_t *add_node_end(list_t **head, const char *str);
+list_t *add_node_end(list_t **head, char *str);
 list_t *_linkPATH(list_t **head);
 void free_list(list_t *head);
 size_t print_list(const list_t *h);
@@ -55,5 +55,9 @@ int _check_path(char *str);
 /* built-ins */
 int own_exit(char **av);
 int _print_env(char **av);
+
+/* str tools */
+char *_strdup(char *str);
+int _strcmp(char *s1, char *s2);
 
 #endif
