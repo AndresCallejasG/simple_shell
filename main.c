@@ -45,7 +45,6 @@ int main(void)
 
             /* parte la linea y la almacena en un char **str */
             args = _split(line);
-
             free(line);
 
             /* for(j = 0; args[j] != NULL; j++)
@@ -56,9 +55,9 @@ int main(void)
 
             /*procesa el array de str y ejecuta dependiendo del tipo */
             status = _processing(args);
+            free(args);
 
-        } while (status);
-        free(args);
+        }while (status);    
 
     }
     else
@@ -75,14 +74,14 @@ void non_interactive(void)
     int status = 0, line_status = 0;
     char **args;
 
-    do
+    
+    while(1)
     {
         line = malloc(sizeof(char));
         line_status = getline(&line, &len, stdin);
         if (line_status == -1)
             {
                 free(line);
-                _putchar('\n');
                 break;
             }
 
@@ -100,9 +99,11 @@ void non_interactive(void)
             
             /*procesa el array de str y ejecuta dependiendo del tipo */
             status = _processing(args);
+            free(args);
 
-    } while (line_status != -1);
-    free(args);
+    }
+
+    
     exit(status);
 }
 
