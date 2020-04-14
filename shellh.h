@@ -8,12 +8,30 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+extern char **environ;
 
+/**
+ * struct list_PATH - singly linked list
+ *
+ * @str: string - (malloc'ed string)
+ *
+ * @next: points to the next node
+ *
+ */
 typedef struct list_PATH
 {
 	char *str;
 	struct list_PATH *next;
 } list_t;
+
+/**
+ * struct built_in - built-ins list
+ *
+ * @cmd: command - (malloc'ed string)
+ *
+ * @f: especific funcion
+ *
+ */
 
 typedef struct built_in
 {

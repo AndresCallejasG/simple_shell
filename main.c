@@ -2,118 +2,105 @@
 
 /**
  * main - Simple_shell main function
- * 
- * @ac: args count
- * @av: args array
+ *
  *
  * Return: Always 0.
  */
 int main(void)
 {
-    char *line;
-    size_t len = 0;
-    int status = 1;
-    /* int j = 0; */
-    char **args;
+	char *line, **args;
+	size_t len = 0;
+	int status = 1;
 
-    signal(SIGINT, handle_ctrl_c);
+	signal(SIGINT, handle_ctrl_c);
 
-    /* revisa si hay una entrada conectada con el stdin */
-    if (isatty(STDIN_FILENO) != 0)
-    {
+	/* revisa si hay una entrada conectada con el stdin */
+	if (isatty(STDIN_FILENO) != 0)
+	{
+		do {
+			line = malloc(sizeof(char));
+			/* Imprime $ y espera el primer comando */
+			_puts("$ ");
 
-        do
-        {
-            line = malloc(sizeof(char));
-            /* Imprime $ y espera el primer comando */
-            _puts("$ ");
+			/* lee del stdin, controla ctrl + D */
+			if (getline(&line, &len, stdin) == -1)
+			{
+				free(line);
+				_putchar('\n');
+				break;
+			}
+			/*controla lineas vacias*/
+			if (_strcmp(line, "\n") == 0)
+			{
+				free(line);
+				continue;
+			}
+			/* parte la linea y la almacena en un char **str */
+			args = _split(line);
+			free(line);
 
-            /* lee del stdin, controla ctrl + D */
-            if (getline(&line, &len, stdin) == -1)
-            {
-                free(line);
-                _putchar('\n');
-                break;
-            }
+			/*procesa el array de str y ejecuta dependiendo del tipo */
+			status = _processing(args);
+			free(args);
 
-            /*controla lineas vacias*/
-            if (_strcmp(line, "\n") == 0)
-            {
-                free(line);
-                continue;
-            }
-
-            /* parte la linea y la almacena en un char **str */
-            args = _split(line);
-            free(line);
-
-            /* for(j = 0; args[j] != NULL; j++)
-        {
-            printf("posicion %d ----> %s\n",j , args[j]);
-            
-        } */
-
-            /*procesa el array de str y ejecuta dependiendo del tipo */
-            status = _processing(args);
-            free(args);
-
-        }while (status);    
-
-    }
-    else
-    {
-        non_interactive();
-    }
-    return (0);
+		} while (status);
+	}
+	else
+		non_interactive();
+	return (0);
 }
+/**
+ * non_interactive - main for non-intec
+ *
+ *
+ * Return: Always 0.
+ */
 
 void non_interactive(void)
 {
-    char *line;
-    size_t len = 0;
-    int status = 0, line_status = 0;
-    char **args;
+	char *line;
+	size_t len = 0;
+	int status = 0, line_status = 0;
+	char **args;
 
-    
-    while(1)
-    {
-        line = malloc(sizeof(char));
-        line_status = getline(&line, &len, stdin);
-        if (line_status == -1)
-            {
-                free(line);
-                break;
-            }
+	while (1)
+	{
+		line = malloc(sizeof(char));
+		line_status = getline(&line, &len, stdin);
+		if (line_status == -1)
+		{
+			free(line);
+			break;
+		}
 
-            /*controla lineas vacias*/
-            if (_strcmp(line, "\n") == 0)
-            {
-                free(line);
-                continue;
-            }
+		/*controla lineas vacias*/
+		if (_strcmp(line, "\n") == 0)
+		{
+			free(line);
+			continue;
+		}
 
-            /* parte la linea y la almacena en un char **str */
-            args = _split(line);
+		/* parte la linea y la almacena en un char **str */
+		args = _split(line);
 
-            free(line);
-            
-            /*procesa el array de str y ejecuta dependiendo del tipo */
-            status = _processing(args);
-            free(args);
+		free(line);
 
-    }
+		/*procesa el array de str y ejecuta dependiendo del tipo */
+		status = _processing(args);
+		free(args);
+	}
 
-    exit(status);
+	exit(status);
 }
 
 /**
- * sign_handler - handles the abscensce of a sign
- * @sig: integer
+ * handle_ctrl_c - handles ctrl + C
+ * @sign: integer
  */
 void handle_ctrl_c(int sign)
 {
-    sign = sign * 1;
-    _putchar('\n');
-    _putchar('$');
-    _putchar(' ');
+	sign = sign * 1;
+	_putchar('\n');
+	_putchar('$');
+	_putchar(' ');
 }

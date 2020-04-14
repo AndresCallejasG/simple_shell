@@ -40,60 +40,48 @@ list_t *add_node_end(list_t **head, char *str)
 
 /**
  * _linkPATH - creates a linked list with PATH elements
- * 
+ *
  * @head: head of list;
  * Return: Always 0.
  */
 list_t *_linkPATH(list_t **head)
 {
-    extern char **environ;
-    char *tok, *name, *s, *s2;
-    int i = 0;
-    char *tmpenv;
+	char *tok, *name, *s, *s2;
+	int i = 0;
+	char *tmpenv;
 
-    name = "PATH";
+	name = "PATH";
 
-    /* while (environ[i] != NULL)
-    {
-        printf("%s\n", environ[i]);
-        i++;
-    } */
+	i = 0;
+	while (environ[i])
+	{
+		/* evita dañar el environ */
+		tmpenv = _strdup(environ[i]);
 
-    /* print to all PATH before strtok(PATH, ":") */
-    /* printf("getenv en func %s --> %s\n\n", name, getenv(name)); */
+		/* strtok sobre la copia */
+		tok = strtok(tmpenv, "=");
 
-    i = 0;
-    while (environ[i])
-    {
-        /* evita dañar el environ */
-        tmpenv = _strdup(environ[i]);
-        
-
-        /* strtok sobre la copia */ 
-        tok = strtok(tmpenv, "=");    
-
-        if (_strcmp(name, tok) == 0)
-        {            
-            tok = strtok(NULL, "=");
-            /* avoid valgrind error */
-            s = _strdup(tok);
-            tok = strtok(s, ":");
-            while(tok)
-            {
+		if (_strcmp(name, tok) == 0)
+		{
+			tok = strtok(NULL, "=");
+			/* avoid valgrind error */
+			s = _strdup(tok);
+			tok = strtok(s, ":");
+			while (tok)
+			{
 				s2 = _strdup(tok);
-                add_node_end(head, s2);
+				add_node_end(head, s2);
 				free(s2);
-                tok = strtok(NULL, ":");
-            }
-            free(s);
-            free(tmpenv);
-            return(*head);
-        }
-        free(tmpenv);
-        i++;
-    }
+				tok = strtok(NULL, ":");
+			}
+			free(s);
+			free(tmpenv);
+			return (*head);
+		}
+		free(tmpenv);
+		i++;
+	}
 	return (NULL);
-    
 }
 /**
  * free_list - prints all the elements of a list_t list.
@@ -118,31 +106,4 @@ void free_list(list_t *head)
 		}
 	}
 }
-/**
- * print_list - prints all the elements of a list_t list.
- *
- * @h: List
- *
- * Return: number of elements
- */
-/* size_t print_list(const list_t *h)
-{
-	int i = 0;
-	const list_t *current;
 
-	if (h)
-	{
-		current = h;
-
-		while (current)
-		{
-			if (current->str == 0)
-				printf("[%d] %s\n", 0, "(nil)");
-			else
-				printf("%s\n", current->str);
-			current = current->next;
-			i++;
-		}
-	}
-	return (i);
-} */

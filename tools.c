@@ -1,6 +1,6 @@
 #include "shellh.h"
 /**
- * str_concat - concatenate two strings
+ * _str_concat - concatenate two strings
  *
  * @s1: string 1
  * @s2: string 2
@@ -32,7 +32,7 @@ char *_str_concat(char *s1, char *s2)
 	{
 		concat[i] = s1[i];
 	}
-    concat[i++] = '/';
+	concat[i++] = '/';
 	for (j = 0; j < len2; j++)
 	{
 		concat[i + j] = s2[j];
@@ -41,7 +41,7 @@ char *_str_concat(char *s1, char *s2)
 	return (concat);
 }
 /**
- * len - calculate the lenght of a string
+ * _strlen - calculate the lenght of a string
  *
  * @str: string
  *

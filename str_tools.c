@@ -8,25 +8,25 @@
  */
 char *_strdup(char *str)
 {
-    int i, len;
-    char *str2;
- 
-    if (!str)
-        return (NULL);
+	int i, len;
+	char *str2;
 
-    len = _strlen(str);
-    str2 = malloc(sizeof(char) * len + 1);
-    
-    if (!str2)
-    {
-        perror("Malloc failed\n");
-        return (NULL);
-    }
-    for (i = 0; i < len; i++)
-        str2[i] = str[i];
+	if (!str)
+		return (NULL);
 
-    str2[i] = 0;
-    return (str2);
+	len = _strlen(str);
+	str2 = malloc(sizeof(char) * len + 1);
+
+	if (!str2)
+	{
+		perror("Malloc failed\n");
+		return (NULL);
+	}
+	for (i = 0; i < len; i++)
+		str2[i] = str[i];
+
+	str2[i] = 0;
+	return (str2);
 }
 
 /**
@@ -56,5 +56,3 @@ int _strcmp(char *s1, char *s2)
 
 	return (0);
 }
-
-
