@@ -125,7 +125,7 @@ void free_list(list_t *head)
  *
  * Return: number of elements
  */
-size_t print_list(const list_t *h)
+/* size_t print_list(const list_t *h)
 {
 	int i = 0;
 	const list_t *current;
@@ -145,4 +145,4 @@ size_t print_list(const list_t *h)
 		}
 	}
 	return (i);
-}
+} */

@@ -26,7 +26,7 @@ int main(void)
         {
             line = malloc(sizeof(char));
             /* Imprime $ y espera el primer comando */
-            printf("$ ");
+            _puts("$ ");
 
             /* lee del stdin, controla ctrl + D */
             if (getline(&line, &len, stdin) == -1)
