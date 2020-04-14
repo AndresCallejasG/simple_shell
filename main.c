@@ -67,7 +67,7 @@ void non_interactive(void)
 
 	while (1)
 	{
-		line = malloc(sizeof(char));
+		line = 0;
 		line_status = getline(&line, &len, stdin);
 		if (line_status == -1)
 		{
