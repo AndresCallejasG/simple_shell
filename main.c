@@ -6,7 +6,7 @@
  *
  * Return: Always 0.
  */
-int main(void)
+int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
 	char *line, **args;
 	size_t len = 0;
