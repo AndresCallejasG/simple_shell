@@ -80,3 +80,21 @@ int _puts(char *str)
 {
 	return (write(1, str, _strlen(str)));
 }
+/**
+ * free_grid - free 2D array
+ *
+ * @grid: array
+ *
+ * Return: void
+ */
+
+void free_grid(char **grid)
+{
+	int i;
+
+	i = 0;
+
+	for (i = 0; grid[i] != NULL; i++)
+		free(grid[i]);
+	free(grid);
+}

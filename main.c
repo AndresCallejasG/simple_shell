@@ -12,7 +12,6 @@ int main(void)
 	size_t len = 0;
 	int status = 1;
 
-
 	signal(SIGINT, handle_ctrl_c);
 
 	/* revisa si hay una entrada conectada con el stdin */
@@ -20,10 +19,8 @@ int main(void)
 	{
 		do {
 			line = 0;
-
 			/* Imprime $ y espera el primer comando */
 			_puts("$ ");
-
 			/* lee del stdin, controla ctrl + D */
 			if (getline(&line, &len, stdin) == -1)
 			{
@@ -37,14 +34,13 @@ int main(void)
 				free(line);
 				continue;
 			}
+			args = 0;
 			/* parte la linea y la almacena en un char **str */
 			args = _split(line);
 			free(line);
-
 			/*procesa el array de str y ejecuta dependiendo del tipo */
 			status = _processing(args);
-			free(args);
-
+			free_grid(args);
 		} while (status);
 	}
 	else
@@ -89,9 +85,8 @@ void non_interactive(void)
 
 		/*procesa el array de str y ejecuta dependiendo del tipo */
 		status = _processing(args);
-		free(args);
+		free_grid(args);
 	}
-
 	exit(status);
 }
 

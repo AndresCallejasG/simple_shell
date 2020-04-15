@@ -58,6 +58,7 @@ int _strlen(char *str);
 char *_str_concat(char *s1, char *s2);
 int _putchar(char c);
 int _puts(char *str);
+void free_grid(char **grid);
 
 /* list tools */
 list_t *add_node_end(list_t **head, char *str);

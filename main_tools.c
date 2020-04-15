@@ -8,8 +8,8 @@
  */
 char **_split(char *line)
 {
-	char *str, *str2;
-	char **array, *tok;
+	char *str = 0, *str2 = 0;
+	char **array = 0, *tok = 0;
 	int i = 0; /* , j = 0 */
 
 	if (line)
@@ -18,16 +18,16 @@ char **_split(char *line)
 		str = _strdup(line);
 		str2 = _strdup(str);
 
-		tok = strtok(str, " \t\r\n\a" );
+		tok = strtok(str, " \t\r\n\a");
 
 		/* count number of tokens */
 		while (tok != NULL)
 		{
 			i++;
-			tok = strtok(NULL, " \t\r\n\a" );
+			tok = strtok(NULL, " \t\r\n\a");
 		}
 		array = malloc(sizeof(char *) * (i + 1));
-		tok = strtok(str2, " \t\r\n\a" );
+		tok = strtok(str2, " \t\r\n\a");
 		i = 0;
 
 		/* fill array with each token */
@@ -35,7 +35,7 @@ char **_split(char *line)
 		{
 			array[i] = _strdup(tok);
 			i++;
-			tok = strtok(NULL, " \t\r\n\a" );
+			tok = strtok(NULL, " \t\r\n\a");
 		}
 		array[i] = NULL;
 

@@ -9,9 +9,7 @@ int _execve(char **av)
 {
 	int status;
 	pid_t child_pid;
-	char *cmd_path;
-
-	cmd_path = av[0];
+	char *cmd_path = 0;
 
 	if (_check_path(av[0]) == 0)
 	{
@@ -20,9 +18,16 @@ int _execve(char **av)
 		/*still not found case*/
 		if (cmd_path == NULL)
 		{
+			free(cmd_path);
 			perror("Error:");
+			cmd_path = av[0];
 			return (-1);
 		}
+	}
+	else
+	{
+		free(cmd_path);
+		cmd_path = strdup(av[0]);
 	}
 	/* printf("path is %s\n", cmd_path); */
 

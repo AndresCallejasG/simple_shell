@@ -19,7 +19,8 @@ int _print_env(char __attribute__((unused)) **av)
 		_putchar('\n');
 		i++;
 	}
-	return (1);
+	free_grid(av);
+	return (0);
 }
 
 /**
@@ -35,8 +36,7 @@ int own_exit(char **av)
 	/* Exit without args */
 	if (av[1] == NULL)
 	{
-		free(av[0]);
-		free(av);
+		free_grid(av);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
