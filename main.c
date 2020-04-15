@@ -3,10 +3,9 @@
 /**
  * main - Simple_shell main function
  *
- *
  * Return: Always 0.
  */
-int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
+int main(void)
 {
 	char *line, **args;
 	size_t len = 0;
@@ -27,18 +26,16 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 				_putchar('\n');
 				break;
 			}
-			/*controla lineas vacias*/
-			if (_strcmp(line, "\n") == 0)
+			args = 0;
+			args = _split(line); /* parte la linea y la guarda en array*/
+			if (args[0] == NULL)
 			{
 				free(line);
+				free_grid(args);
 				continue;
 			}
-			args = 0;
-			/* parte la linea y la almacena en un char **str */
-			args = _split(line);
 			free(line);
-			/*procesa el array de str y ejecuta dependiendo del tipo */
-			_processing(args);
+			_processing(args); /*proc array de str y ejec segun el tipo */
 			free_grid(args);
 		} while (1);
 	}
@@ -46,9 +43,9 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 		non_interactive();
 	return (0);
 }
+
 /**
  * non_interactive - main for non-intec
- *
  *
  * Return: Always 0.
  */
@@ -70,15 +67,15 @@ void non_interactive(void)
 			break;
 		}
 
-		/*controla lineas vacias*/
-		if (_strcmp(line, "\n") == 0)
-		{
-			free(line);
-			continue;
-		}
-
 		/* parte la linea y la almacena en un char **str */
 		args = _split(line);
+
+		if (args[0] == NULL)
+		{
+			free(line);
+			free_grid(args);
+			continue;
+		}
 
 		free(line);
 
@@ -86,7 +83,6 @@ void non_interactive(void)
 		status = _processing(args);
 		free_grid(args);
 	}
-	
 	exit(status);
 }
 

@@ -19,7 +19,7 @@ int _execve(char **av)
 		if (cmd_path == NULL)
 		{
 			free(cmd_path);
-			perror("Error:");
+			perror("Error");
 			return (1);
 		}
 	}
@@ -35,7 +35,7 @@ int _execve(char **av)
 	{
 		if (execve(cmd_path, av, environ) == -1)
 		{
-			perror("Error");
+			perror(av[0]);
 		}
 	}
 	else
