@@ -19,7 +19,6 @@ int _print_env(char __attribute__((unused)) **av)
 		_putchar('\n');
 		i++;
 	}
-	free_grid(av);
 	return (0);
 }
 

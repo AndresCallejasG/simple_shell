@@ -10,7 +10,6 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 {
 	char *line, **args;
 	size_t len = 0;
-	int status = 1;
 
 	signal(SIGINT, handle_ctrl_c);
 
@@ -39,9 +38,9 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) *argv[])
 			args = _split(line);
 			free(line);
 			/*procesa el array de str y ejecuta dependiendo del tipo */
-			status = _processing(args);
+			_processing(args);
 			free_grid(args);
-		} while (status);
+		} while (1);
 	}
 	else
 		non_interactive();
@@ -87,6 +86,7 @@ void non_interactive(void)
 		status = _processing(args);
 		free_grid(args);
 	}
+	
 	exit(status);
 }
 

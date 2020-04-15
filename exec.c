@@ -20,14 +20,12 @@ int _execve(char **av)
 		{
 			free(cmd_path);
 			perror("Error:");
-			cmd_path = av[0];
 			return (1);
 		}
 	}
 	else
 	{
-		free(cmd_path);
-		cmd_path = strdup(av[0]);
+		cmd_path = _strdup(av[0]);
 	}
 	/* printf("path is %s\n", cmd_path); */
 
