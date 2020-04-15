@@ -35,7 +35,7 @@ int _execve(char **av)
 
 	if (child_pid == 0)
 	{
-		if (execve(cmd_path, av, NULL) == -1)
+		if (execve(cmd_path, av, environ) == -1)
 		{
 			perror("Error");
 		}
