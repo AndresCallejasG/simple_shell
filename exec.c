@@ -21,7 +21,7 @@ int _execve(char **av)
 			free(cmd_path);
 			perror("Error:");
 			cmd_path = av[0];
-			return (-1);
+			return (1);
 		}
 	}
 	else
