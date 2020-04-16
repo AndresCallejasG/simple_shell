@@ -40,6 +40,22 @@ typedef struct built_in
 
 } built_in_t;
 
+/**
+ * struct help - built-ins help
+ *
+ * @cmd: command - (malloc'ed string)
+ *
+ * @f: especific funcion
+ *
+ */
+
+typedef struct help
+{
+	char *cmd;
+	void (*f)();
+
+} help_t;
+
 /* handle errors */
 void print_error(int status, char **args, int count, char *shell_name);
 void handle_ctrl_c(int sign);
@@ -59,7 +75,6 @@ void _print_number_err(int n);
 int _puts_err(char *str);
 int _putchar_err(char c);
 
-
 /* tools */
 void free_grid(char **grid);
 int _atoi(char *s);
@@ -78,11 +93,19 @@ int _check_path(char *str);
 /* built-ins */
 int own_exit(char **av);
 int _print_env(char **av);
+int own_help (char **av);
 
 /* str tools */
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 char *_str_concat(char *s1, char *s2);
+
+/* help */ 
+void help_exit(void);
+void help_env(void);
+void help_help(void);
+void print_help_cmds(void);
+
 
 #endif

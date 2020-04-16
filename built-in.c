@@ -48,6 +48,39 @@ int own_exit(char **av)
 		exit(num);
 	}
 	return (0);
-
 }
+/**
+ * own_help - help
+ *
+ * @av: buffer with the commands
+ *
+ * Return: 0 if success otherwise 1
+ */
+int own_help(char **av)
+{
 
+	int i = 0;
+
+	help_t help_list[] = {
+		{"exit", help_exit},
+		{"env", help_env},
+		{"help", help_help},
+		{NULL, NULL}};
+
+	if (av[1] == NULL)
+	{
+		print_help_cmds();
+		return (0);
+	}
+
+	while (help_list[i].cmd)
+	{
+		if (_strcmp(av[1], help_list[i].cmd) == 0)
+		{
+			help_list[i].f();
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}

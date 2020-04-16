@@ -62,6 +62,7 @@ int _processing(char **args)
 	built_in_t b_in[] = {
 		{"exit", own_exit},
 		{"env", _print_env},
+		{"help", own_help},
 		{NULL, NULL}};
 
 	while (b_in[i].cmd)
