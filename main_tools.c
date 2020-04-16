@@ -73,6 +73,5 @@ int _processing(char **args)
 		i++;
 	}
 
-	_execve(args);
-	return (0);
+	return (_execve(args));
 }

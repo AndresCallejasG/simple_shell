@@ -19,8 +19,7 @@ int _execve(char **av)
 		if (cmd_path == NULL)
 		{
 			free(cmd_path);
-			perror("Error");
-			return (1);
+			return (127);
 		}
 	}
 	else
@@ -44,7 +43,9 @@ int _execve(char **av)
 		/* printf("wait %d finished\n", i); */
 	}
 	free(cmd_path);
-	return (0);
+	if (status != 0)
+		status = 2;
+	return (status);
 }
 
 /**

@@ -40,25 +40,21 @@ typedef struct built_in
 
 } built_in_t;
 
-/* non interactive main */
-
-void non_interactive(void);
-
-/* Function that tokenize input line to an **array */
-char **_split(char *line);
-
-int _processing(char **args);
-
-int _execve(char **av);
-
+/* handle errors */
+void print_error(int status, char **args, int count, char *shell_name);
 void handle_ctrl_c(int sign);
 
+/* Main tools */
+char **_split(char *line);
+int _processing(char **args);
+int _execve(char **av);
+
 /* tools */
-int _strlen(char *str);
-char *_str_concat(char *s1, char *s2);
 int _putchar(char c);
 int _puts(char *str);
+void _print_number(int n);
 void free_grid(char **grid);
+int _atoi(char *s);
 
 /* list tools */
 list_t *add_node_end(list_t **head, char *str);
@@ -78,5 +74,7 @@ int _print_env(char **av);
 /* str tools */
 char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
+int _strlen(char *str);
+char *_str_concat(char *s1, char *s2);
 
 #endif

@@ -31,12 +31,21 @@ int _print_env(char __attribute__((unused)) **av)
  */
 int own_exit(char **av)
 {
+	int num = 0;
 
 	/* Exit without args */
 	if (av[1] == NULL)
 	{
 		free_grid(av);
-		exit(EXIT_SUCCESS);
+		return (-1);
+	}
+	else
+	{
+		num = _atoi(av[1]);
+		if (num == -1)
+			return (2);
+		free_grid(av);
+		exit(num);
 	}
 	return (0);
 

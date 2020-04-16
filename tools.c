@@ -1,63 +1,5 @@
 #include "shellh.h"
 /**
- * _str_concat - concatenate two strings
- *
- * @s1: string 1
- * @s2: string 2
- *
- * Return: array concatenated
- */
-char *_str_concat(char *s1, char *s2)
-{
-	char *concat;
-	int i, j, len1, len2;
-
-	i = 0;
-	j = 0;
-
-	if (s1 == 0)
-		s1 = "";
-	if (s2 == 0)
-		s2 = "";
-
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-
-	concat = malloc((len1 + len2) * sizeof(char) + 2);
-
-	if (concat == 0)
-		return ('\0');
-
-	for (i = 0; i < len1; i++)
-	{
-		concat[i] = s1[i];
-	}
-	concat[i++] = '/';
-	for (j = 0; j < len2; j++)
-	{
-		concat[i + j] = s2[j];
-	}
-	concat[i + j] = '\0';
-	return (concat);
-}
-/**
- * _strlen - calculate the lenght of a string
- *
- * @str: string
- *
- * Return: lenght
- */
-
-int _strlen(char *str)
-{
-	int i = 0;
-
-	while (str[i] != '\0')
-		i++;
-
-	return (i);
-}
-/**
 * _putchar - writes the character c to stdout
 * @c: The character to print
 *
@@ -81,6 +23,46 @@ int _puts(char *str)
 	return (write(1, str, _strlen(str)));
 }
 /**
+* _print_number - prints an integer char by char
+* @n: The integer to print
+*
+* Return: void
+*/
+
+void _print_number(int n)
+{
+	int i, size;
+	unsigned int num, num_temp, dig, div;
+
+	num = n;
+	size = 0;
+	div = 1;
+
+	if (n < 0)
+	{
+		num = num * -1;
+		_putchar(45);
+	}
+
+	num_temp = num;
+	while (num_temp != 0)
+	{
+		size++;
+		num_temp /= 10;
+	}
+	for (i = 1; i < size; i++)
+	{
+		div = div * 10;
+	}
+	for (i = size - 1; i >= 1; i--)
+	{
+		dig = num / div;
+		_putchar((dig % 10) + '0');
+		div /= 10;
+	}
+	_putchar((num % 10) + '0');
+}
+/**
  * free_grid - free 2D array
  *
  * @grid: array
@@ -97,4 +79,38 @@ void free_grid(char **grid)
 	for (i = 0; grid[i] != NULL; i++)
 		free(grid[i]);
 	free(grid);
+}
+
+/**
+* _atoi - convert a string to an integer
+* @s: string
+*
+* Return: num if finds a number
+* 0 otherwise
+*/
+
+int _atoi(char *s)
+{
+	int i;
+	int num;
+
+	i = 0;
+	num = 0;
+
+	if (s)
+	{
+		while (s[i] != '\0')
+		{
+			if (s[i] >= '0' && s[i] <= '9')
+			{
+				num *= 10;
+				num -= (s[i] - '0');
+			}
+			else
+				return (-1);
+			i++;
+		}
+		return (num * -1);
+	}
+	return (-1);
 }
