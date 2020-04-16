@@ -44,6 +44,9 @@ typedef struct built_in
 void print_error(int status, char **args, int count, char *shell_name);
 void handle_ctrl_c(int sign);
 
+/* handle comments # */
+void clean_comments(char *line);
+
 /* Main tools */
 char **_split(char *line);
 int _processing(char **args);

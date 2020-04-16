@@ -22,8 +22,7 @@ int main(int __attribute__((unused)) argc, char *av[])
 	{
 		count++;
 		line = 0;
-		/* Imprime $ y espera el primer comando */
-		if (interactive)
+		if (interactive) /* Imprime $ y espera el primer comando */
 			_puts("$ ");
 		/* lee del stdin, controla ctrl + D */
 		if (getline(&line, &len, stdin) == -1)
@@ -33,6 +32,7 @@ int main(int __attribute__((unused)) argc, char *av[])
 				_putchar('\n');
 			break;
 		}
+		clean_comments(line);
 		args = 0;
 		args = _split(line); /* parte la linea y la guarda en array*/
 		if (args[0] == NULL)
@@ -96,5 +96,25 @@ void print_error(int status, char **args, int count,
 			default:
 				break;
 		}
+	}
+}
+
+/**
+ * clean_comments - handle #
+ * @line: line
+ */
+
+void clean_comments(char *line)
+{
+	int i = 0;
+
+	while (line[i])
+	{
+		if (line[i] == '#')
+		{
+			line[i] = '\0';
+			return;
+		}
+		i++;
 	}
 }
