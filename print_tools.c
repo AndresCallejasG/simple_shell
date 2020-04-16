@@ -1,10 +1,11 @@
 #include "shellh.h"
 /**
 * _putchar - writes the character c to stdout
+*
 * @c: The character to print
 *
 * Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
+* On error, -1 is returned, and errno is set appropriately
 */
 int _putchar(char c)
 {
@@ -22,9 +23,12 @@ int _puts(char *str)
 {
 	return (write(1, str, _strlen(str)));
 }
+
 /**
 * _print_number_err - prints an integer char by char
+*
 * in the STDERR_FILENO
+*
 * @n: The integer to print
 *
 * Return: void
@@ -63,6 +67,7 @@ void _print_number_err(int n)
 	}
 	_putchar_err((num % 10) + '0');
 }
+
 /**
  * _puts_err - Prints a string to the STDERR_FILENO.
  *
@@ -77,6 +82,7 @@ int _puts_err(char *str)
 
 /**
 * _putchar_err - writes the character c to stdout
+*
 * @c: The character to print
 *
 * Return: On success 1.

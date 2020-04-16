@@ -58,21 +58,21 @@ list_t *_linkPATH(list_t **head)
 		/* evita dañar el environ */
 		tmpenv = _strdup(environ[i]);
 
-		/* strtok sobre la copia */
-		tok = strtok(tmpenv, "=");
+		/* _strtok sobre la copia */
+		tok = _strtok(tmpenv, "=");
 
 		if (_strcmp(name, tok) == 0)
 		{
-			tok = strtok(NULL, "=");
+			tok = _strtok(NULL, "=");
 			/* avoid valgrind error */
 			s = _strdup(tok);
-			tok = strtok(s, ":");
+			tok = _strtok(s, ":");
 			while (tok)
 			{
 				s2 = _strdup(tok);
 				add_node_end(head, s2);
 				free(s2);
-				tok = strtok(NULL, ":");
+				tok = _strtok(NULL, ":");
 			}
 			free(s);
 			free(tmpenv);
