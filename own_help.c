@@ -12,7 +12,6 @@ void help_exit(void)
 	_puts("\tIf <num> is omitted, the exit status is:\n");
 	_puts("\that of the last command executed.\n");
 }
-
 /**
 * help_env - prints information about env built-in
 *
