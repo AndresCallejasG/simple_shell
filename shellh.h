@@ -52,10 +52,15 @@ char **_split(char *line);
 int _processing(char **args);
 int _execve(char **av);
 
-/* tools */
+/* print tools */
 int _putchar(char c);
 int _puts(char *str);
-void _print_number(int n);
+void _print_number_err(int n);
+int _puts_err(char *str);
+int _putchar_err(char c);
+
+
+/* tools */
 void free_grid(char **grid);
 int _atoi(char *s);
 

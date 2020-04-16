@@ -71,27 +71,27 @@ void print_error(int status, char **args, int count,
 	{
 		if (status == 2 && (_strcmp(args[0], "exit") != 0))
 			return;
-		_puts(shell_name);
-		_puts(": ");
-		_print_number(count);
-		_puts(": ");
-		_puts(args[0]);
-		_puts(": ");
+		_puts_err(shell_name);
+		_puts_err(": ");
+		_print_number_err(count);
+		_puts_err(": ");
+		_puts_err(args[0]);
+		_puts_err(": ");
 
 		switch (status)
 		{
 			case 2:
-				_puts("Illegal number");
+				_puts_err("Illegal number");
 				if (args[1])
 				{
-					_puts(": ");
-					_puts(args[1]);
-					_puts("\n");
+					_puts_err(": ");
+					_puts_err(args[1]);
+					_puts_err("\n");
 				}
 				break;
 			case 127:
-				_puts("not found");
-				_puts("\n");
+				_puts_err("not found");
+				_puts_err("\n");
 				break;
 			default:
 				break;
