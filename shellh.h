@@ -93,7 +93,7 @@ int _check_path(char *str);
 /* built-ins */
 int own_exit(char **av);
 int _print_env(char **av);
-int own_help (char **av);
+int own_help(char **av);
 
 /* str tools */
 char *_strdup(char *str);
@@ -101,7 +101,7 @@ int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 char *_str_concat(char *s1, char *s2);
 
-/* help */ 
+/* help */
 void help_exit(void);
 void help_env(void);
 void help_help(void);
